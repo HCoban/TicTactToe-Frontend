@@ -9,7 +9,7 @@ class Cell extends React.Component {
   render() {
     return(
       <div className="cell">
-        <button></button>
+        <span></span>
       </div>
     );
   }
