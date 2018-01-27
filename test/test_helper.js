@@ -15,8 +15,10 @@ global.window = global.document.defaultView;
 
 const $ = jquery(global.window);
 
-function renderComponent(ComponentClass) {
-  const component = TestUtils.renderIntoDocument(<ComponentClass />);
+function renderComponent(ComponentClass, props, state) {
+  const component = TestUtils.renderIntoDocument(
+    <ComponentClass {...props} />
+  );
 
   return $(ReactDOM.findDOMNode(component));
 }
