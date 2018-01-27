@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import App from './components/app';
+
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-    <h1>Welcome to Tic Tac Toe Game!</h1>,
+    <App />,
     document.getElementById('root')
   );
 });
