@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: "./tictactoe.jsx",
+  entry: "./src/index.jsx",
   output: {
     path: path.resolve(__dirname), 
     filename: "bundle.js"
