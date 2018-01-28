@@ -5,6 +5,9 @@ import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import chai, { expect } from 'chai';
 import chaiJquery from 'chai-jquery';
+import { Provider } from 'react-redux';
+
+import configureStore from '../src/store/store';
 
 const { JSDOM } = jsdom;
 const {
@@ -17,7 +20,9 @@ const $ = jquery(global.window);
 
 function renderComponent(ComponentClass, props, state) {
   const component = TestUtils.renderIntoDocument(
-    <ComponentClass {...props} />
+    <Provider store={configureStore()}>
+      <ComponentClass {...props} />
+    </Provider>
   );
 
   return $(ReactDOM.findDOMNode(component));
