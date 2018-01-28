@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
+import MoveReducer from './move_reducer';
 
 const RootReducer = combineReducers({
-  moves: (state = {}) => state
+  move: MoveReducer
 });
+
+export default RootReducer;
