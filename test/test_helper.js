@@ -20,7 +20,7 @@ const $ = jquery(global.window);
 
 function renderComponent(ComponentClass, props, state) {
   const component = TestUtils.renderIntoDocument(
-    <Provider store={configureStore()}>
+    <Provider store={configureStore(state)}>
       <ComponentClass {...props} />
     </Provider>
   );
