@@ -1,20 +1,12 @@
 import * as MoveUtil from '../util/move_util';
 import { addCellValue } from '../actions/cell_actions';
+import { receiveGame } from '../actions/game_actions';
 
-export const MoveConstants = {
-  RECEIVE_LAST_MOVE: "RECEIVE_LAST_MOVE"
-};
-
-export const receiveLastMove = move => ({
-  type: MoveConstants.RECEIVE_LAST_MOVE,
-  move
-});
-
-export const createMove = (move, value) => dispatch => (
-  MoveUtil.createMove(move, value)
+export const createMove = (moveParams) => dispatch => (
+  MoveUtil.createMove(moveParams)
     .then(response => {
-      dispatch(receiveLastMove(response.move));
       dispatch(addCellValue(response.move, response.value));
+      dispatch(receiveGame(response.game))
     })
     .catch(() => {
       // TODO show error
