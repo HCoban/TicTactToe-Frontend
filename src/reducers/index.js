@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import MoveReducer from './move_reducer';
+import { reducer as form } from 'redux-form';
 import CellReducer from './cell_reducer';
+import GameReducer from './game_reducer';
 
 const RootReducer = combineReducers({
-  move: MoveReducer,
-  cells: CellReducer
+  form,
+  cells: CellReducer,
+  game: GameReducer
 });
 
 export default RootReducer;

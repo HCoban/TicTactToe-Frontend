@@ -1,24 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { sortBy} from 'underscore';
 
 class MoveLogBase extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  logText(singleMove) {
-    let value = this.props.cells[singleMove];
-    let player = (value === "X") ? 1 : 2;
+  logText(cellId) {
+    let cell = this.props.cells[cellId];
+    if (!cell) { return null }
+    let game = this.props.games[this.props.gameId]
+    let player = (cell.value === "X") ? game.playerOne : game.playerTwo;
+    let step = cell.step
     
-    return `Player ${player} marked ${singleMove}`;
+    return `${step}: ${player} marked ${cellId}`;
   }
 
   render() {
-    let moves = this.props.move.map(singleMove => {
-      return (
-        <li key={singleMove}>{this.logText(singleMove)}</li>
-      );
+    let game = this.props.games[this.props.gameId]
+    if (!game) { return null; }
+    let cellIds = sortBy(Object.keys(this.props.cells), (key) => {
+      this.props.cells[key].step
     });
+
+    let moves = cellIds.map((cellId) => {
+      return (
+        <li key={cellId}>{this.logText(cellId)}</li>
+      );
+    })
 
     return (
       <div className="move-log">
@@ -29,8 +39,8 @@ class MoveLogBase extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  move: state.move,
-  cells: state.cells
+  cells: state.cells,
+  games: state.game
 });
 
 const MoveLog = connect(
