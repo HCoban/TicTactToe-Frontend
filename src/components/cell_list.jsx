@@ -9,11 +9,11 @@ class CellList extends React.Component {
       let cells = [];
       let j = 0;
       while (j <= 2) {
-        cells.push(<Cell key={`${i}, ${j}`} />);
+        cells.push(<Cell key={`${i}, ${j}`} i={i} j={j} gameId={this.props.gameId}/>);
         j++;
       }
       columns.push(
-        <div className="column">
+        <div className="column" key={i}>
           {cells}
         </div>
       );
