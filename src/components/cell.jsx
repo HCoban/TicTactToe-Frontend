@@ -17,35 +17,51 @@ const POSITIONS = {
 class CellBase extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(positionString) {
+    let game = this.props.game[this.props.gameId];
+    if (!game) {
+      return null 
+    }
+
+    if (!game.completed) {
+      let currentPlayer = (Object.keys(this.props.cells).length % 2 === 0) ? 1 : 2;
+      let moveParams = {
+        move: positionString,
+        value: currentPlayer,
+        token: localStorage.getItem('token')
+      }
+      this.props.createMove(moveParams);
+    }
   }
 
   render() {
     const {
-      move,
       cells,
       i,
       j
     } = this.props;
 
-    let currentPlayer = (move.length % 2 === 0) ? 'X' : 'O';
     let positionString = POSITIONS[`${i}${j}`];
-    let value = cells[positionString];
-
+    let cell = cells[positionString];
+    
     return(
-      <div className="cell" onClick={() => this.props.createMove(move, currentPlayer)}>
-        <span>{value}</span>
+      <div className="cell" onClick={() => this.handleClick(positionString)}>
+        <span>{cell && cell.value}</span>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-    move: state.move,
-    cells: state.cells
+    cells: state.cells,
+    game: state.game
 });
 
 const mapDispatchToProps = dispatch => ({
-  createMove: (move, value) => dispatch(createMove(move, value))
+  createMove: (moveParams) => dispatch(createMove(moveParams))
 });
 
 const Cell = connect(
