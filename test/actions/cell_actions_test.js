@@ -1,6 +1,5 @@
 import { expect } from '../test_helper';
 import { CellConstants, addCellValue, addAllCells } from '../../src/actions/cell_actions';
-import { equal } from 'assert';
 
 describe('Cell actions', () => {
   describe('addCellValue', () => {
