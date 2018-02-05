@@ -14,7 +14,10 @@ describe('Cell Reducer', () => {
       value: "X"
     };
 
-    expect(CellReducer({}, action)).to.eql({A3: "X"});
+    expect(CellReducer({}, action)).to.eql({A3: {
+      value: "X",
+      step: 1
+    }});
   });
 
   it('handles ADD_CELL_VALUE in non-empty state', () => {
@@ -24,11 +27,13 @@ describe('Cell Reducer', () => {
       value: "X"
     };
 
-    const existingState = { A1: "X", B2: "O" };
+    const existingState = {
+      A1: { value: "X", step: 1}, B2: { value: "O", step: 2 }
+    };
     expect(CellReducer(existingState, action)).to.eql({
-      A1: "X",
-      B2: "O",
-      A3: "X"
+      A1: { value: "X", step: 1},
+      B2: { value: "O", step: 2},
+      A3: { value: "X", step: 3}
     });
   });
 });

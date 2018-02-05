@@ -1,5 +1,6 @@
 import { expect } from '../test_helper';
-import { CellConstants, addCellValue } from '../../src/actions/cell_actions';
+import { CellConstants, addCellValue, addAllCells } from '../../src/actions/cell_actions';
+import { equal } from 'assert';
 
 describe('Cell actions', () => {
   describe('addCellValue', () => {
@@ -14,4 +15,19 @@ describe('Cell actions', () => {
       expect(addCellValue(move, value).value).to.equal("X");
     });
   });
+
+  describe('addAllCells', () => {
+    it('has correct type', () => {
+      expect(addAllCells().type).to.equal(CellConstants.ADD_ALL_CELLS);
+    })
+
+    it('has correct payload', () => {
+      const moves = [
+        { move: "A1", value: "X", step: 1 },
+        { move: "A3", value: "O", step: 2 },
+        { move: "B2", value: "X", step: 3 }
+      ];
+      expect(addAllCells(moves).moves).to.equal(moves);
+    })
+  })
 });
