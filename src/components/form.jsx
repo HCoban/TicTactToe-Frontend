@@ -26,19 +26,34 @@ class GameFormBase extends React.Component {
     const { handleSubmit, game } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <Field
-          component="input"
-          name="playerOneName"
-          type="text"
-        />
-        <Field
-          component="input"
-          name="playerTwoName"
-          type="text"
-        />
-        <button action="submit">Start Game!</button>
-      </form>
+      <div className="form-component">
+        <h1>
+          TICTACTOE
+        </h1>
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <div className="fields">
+            <label>
+              <span>Player 1 Name</span>
+              <Field
+                component="input"
+                name="playerOneName"
+                type="text"
+                />
+            </label>
+            <label>
+              <span>Player 2 Name</span>
+              <Field
+                component="input"
+                name="playerTwoName"
+                type="text"
+                />
+            </label>
+          </div>
+          <div className="button-container">
+            <button action="submit">Start Game!</button>
+          </div>
+        </form>
+    </div>
     );
   }
 }
