@@ -1,7 +1,6 @@
 import * as GameUtil from '../util/game_util';
-
-import { Redirect } from 'react-router-dom';
 import { addAllCells } from './cell_actions';
+import { hashHistory } from 'react-router';
 
 export const GameConstants = {
   RECEIVE_GAME: "RECEIVE_GAME",
@@ -17,6 +16,7 @@ export const createGame = (players) => dispatch => {
   return GameUtil.createGame(players)
     .then(response => {
       localStorage.setItem('token', response.game.token)
+      hashHistory.push(`/games/${response.game.id}?token=${response.game.token}`)
       dispatch(receiveGame(response.game));
     });
   }

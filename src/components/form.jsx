@@ -8,16 +8,6 @@ class GameFormBase extends React.Component {
     super(props);
   }
 
-  componentDidUpdate() {
-    let token = localStorage.getItem('token');
-    let games = this.props.game
-    Object.keys(games).forEach((gameId) => {
-      if (games[gameId].token === token) {
-        this.props.history.push(`/games/${gameId}`)
-      }
-    });
-  }
-
   handleFormSubmit(formProps) {
     this.props.createGame(formProps)
   }

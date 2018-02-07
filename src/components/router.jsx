@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { Router, Route, hashHistory } from 'react-router';
 import Form from './form';
 import GameShow from './game_show';
 import GameForm from './form';
@@ -11,12 +11,12 @@ class AppRouter extends React.Component {
 
   render() {
     return (
-      <HashRouter>
+      <Router history={hashHistory}>
         <div>
           <Route exact path="/" component={Form}/>
           <Route path="/games/:gameId" component={GameShow} />
         </div>
-      </HashRouter>
+      </Router>
     );
   }
 }

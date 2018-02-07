@@ -14,10 +14,12 @@ class GameShowBase extends React.Component {
   componentDidMount() {
     let pathname = this.props.location.pathname.split("/")
     let id = pathname[pathname.length - 1]
-    if (!this.props.game[id]) {
-      let token = localStorage.getItem('token')
-      this.props.requestGame(id);
+    let token = this.props.location.search
+    if (token.length > 7) {
+      token = token.substring(7)
+      localStorage.setItem('token', token)
     }
+    this.props.requestGame(id);
   }
 
   render() {
