@@ -20,7 +20,11 @@ class CellBase extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(positionString) {
+  handleClick(positionString, cell) {
+    if (cell && cell.value) {
+      return null;
+    }
+
     let game = this.props.game[this.props.gameId];
     if (!game) {
       return null;
@@ -45,7 +49,7 @@ class CellBase extends React.Component {
     let cell = cells[positionString];
 
     return (
-      <div className="cell" onClick={() => this.handleClick(positionString)}>
+      <div className="cell" onClick={() => this.handleClick(positionString, cell)}>
         <span>{cell && cell.value}</span>
       </div>
     );
