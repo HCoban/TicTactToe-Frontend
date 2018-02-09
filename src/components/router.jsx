@@ -1,8 +1,8 @@
-import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
-import Form from './form';
-import GameShow from './game_show';
-import GameForm from './form';
+import React from "react";
+import { Router, Route, hashHistory } from "react-router";
+import Form from "./form";
+import GameShow from "./game_show";
+import GameForm from "./form";
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class AppRouter extends React.Component {
     return (
       <Router history={hashHistory}>
         <div>
-          <Route exact path="/" component={Form}/>
+          <Route exact path="/" component={Form} />
           <Route path="/games/:gameId" component={GameShow} />
         </div>
       </Router>

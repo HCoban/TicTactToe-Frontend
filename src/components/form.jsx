@@ -1,7 +1,7 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
-import { createGame } from '../actions/game_actions';
+import React from "react";
+import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
+import { createGame } from "../actions/game_actions";
 
 class GameFormBase extends React.Component {
   constructor(props) {
@@ -9,61 +9,48 @@ class GameFormBase extends React.Component {
   }
 
   handleFormSubmit(formProps) {
-    this.props.createGame(formProps)
+    this.props.createGame(formProps);
   }
 
-  render () {
+  render() {
     const { handleSubmit, game } = this.props;
 
     return (
       <div className="form-component">
-        <h1>
-          TICTACTOE
-        </h1>
+        <h1>TICTACTOE</h1>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <div className="fields">
             <label>
               <span>Player 1 Name</span>
-              <Field
-                component="input"
-                name="playerOneName"
-                type="text"
-                />
+              <Field component="input" name="playerOneName" type="text" />
             </label>
             <label>
               <span>Player 2 Name</span>
-              <Field
-                component="input"
-                name="playerTwoName"
-                type="text"
-                />
+              <Field component="input" name="playerTwoName" type="text" />
             </label>
           </div>
           <div className="button-container">
             <button action="submit">Start Game!</button>
           </div>
         </form>
-    </div>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   game: state.game
-}); 
+});
 
 const mapDispatchToProps = dispatch => ({
-  createGame: (players) => dispatch(createGame(players))
+  createGame: players => dispatch(createGame(players))
 });
 
 const gameReduxForm = reduxForm({
-  form: 'gameForm',
-  fields: ['playerOneName', 'playerTwoName'],
+  form: "gameForm",
+  fields: ["playerOneName", "playerTwoName"]
 })(GameFormBase);
 
-const GameForm = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(gameReduxForm);
+const GameForm = connect(mapStateToProps, mapDispatchToProps)(gameReduxForm);
 
 export default GameForm;

@@ -1,5 +1,5 @@
-import React from 'react';
-import Cell from './cell';
+import React from "react";
+import Cell from "./cell";
 
 class CellList extends React.Component {
   render() {
@@ -9,7 +9,9 @@ class CellList extends React.Component {
       let cells = [];
       let j = 0;
       while (j <= 2) {
-        cells.push(<Cell key={`${i}, ${j}`} i={i} j={j} gameId={this.props.gameId}/>);
+        cells.push(
+          <Cell key={`${i}, ${j}`} i={i} j={j} gameId={this.props.gameId} />
+        );
         j++;
       }
       columns.push(
@@ -20,11 +22,7 @@ class CellList extends React.Component {
       i++;
     }
 
-    return(
-      <div className="cell-list">
-        {columns}
-      </div>
-    );
+    return <div className="cell-list">{columns}</div>;
   }
 }
 

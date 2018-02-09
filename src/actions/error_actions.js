@@ -1,9 +1,9 @@
 export const ErrorConstants = {
-  ADD_ERROR: 'ADD_ERROR',
-  REMOVE_ERROR: 'REMOVE_ERROR'
+  ADD_ERROR: "ADD_ERROR",
+  REMOVE_ERROR: "REMOVE_ERROR"
 };
 
-export const addError = (error) => ({
+export const addError = error => ({
   type: ErrorConstants.ADD_ERROR,
   error
 });

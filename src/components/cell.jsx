@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createMove } from '../actions/move_actions';
+import React from "react";
+import { connect } from "react-redux";
+import { createMove } from "../actions/move_actions";
 
 const POSITIONS = {
   "00": "A1",
@@ -11,7 +11,7 @@ const POSITIONS = {
   "12": "B3",
   "20": "C1",
   "21": "C2",
-  "22": "C3" 
+  "22": "C3"
 };
 
 class CellBase extends React.Component {
@@ -23,31 +23,28 @@ class CellBase extends React.Component {
   handleClick(positionString) {
     let game = this.props.game[this.props.gameId];
     if (!game) {
-      return null 
+      return null;
     }
 
     if (!game.completed) {
-      let currentPlayer = (Object.keys(this.props.cells).length % 2 === 0) ? 1 : 2;
+      let currentPlayer =
+        Object.keys(this.props.cells).length % 2 === 0 ? 1 : 2;
       let moveParams = {
         move: positionString,
         value: currentPlayer,
-        token: localStorage.getItem('token')
-      }
+        token: localStorage.getItem("token")
+      };
       this.props.createMove(moveParams);
     }
   }
 
   render() {
-    const {
-      cells,
-      i,
-      j
-    } = this.props;
+    const { cells, i, j } = this.props;
 
     let positionString = POSITIONS[`${i}${j}`];
     let cell = cells[positionString];
-    
-    return(
+
+    return (
       <div className="cell" onClick={() => this.handleClick(positionString)}>
         <span>{cell && cell.value}</span>
       </div>
@@ -56,17 +53,14 @@ class CellBase extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    cells: state.cells,
-    game: state.game
+  cells: state.cells,
+  game: state.game
 });
 
 const mapDispatchToProps = dispatch => ({
-  createMove: (moveParams) => dispatch(createMove(moveParams))
+  createMove: moveParams => dispatch(createMove(moveParams))
 });
 
-const Cell = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CellBase);
+const Cell = connect(mapStateToProps, mapDispatchToProps)(CellBase);
 
 export default Cell;

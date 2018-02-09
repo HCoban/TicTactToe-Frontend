@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
 class HeaderBase extends React.Component {
   constructor(props) {
@@ -8,8 +8,13 @@ class HeaderBase extends React.Component {
 
   gameOverText() {
     let game = this.props.games[this.props.gameId];
-    if (!game) { return null };
-    let lastPlayer = (Object.keys(this.props.cells).length % 2 === 0) ? game.playerTwo : game.playerOne;
+    if (!game) {
+      return null;
+    }
+    let lastPlayer =
+      Object.keys(this.props.cells).length % 2 === 0
+        ? game.playerTwo
+        : game.playerOne;
     if (game && game.completed) {
       if (game.winner) {
         return (
@@ -23,16 +28,21 @@ class HeaderBase extends React.Component {
           <div>
             <h1>Game Over</h1>
           </div>
-        )
+        );
       }
     }
   }
 
   playerInfo() {
-    let game = this.props.games[this.props.gameId]
-    if (!game || game.completed) { return null };
+    let game = this.props.games[this.props.gameId];
+    if (!game || game.completed) {
+      return null;
+    }
 
-    let currentPlayer = (Object.keys(this.props.cells).length % 2 === 0) ? game.playerOne : game.playerTwo;
+    let currentPlayer =
+      Object.keys(this.props.cells).length % 2 === 0
+        ? game.playerOne
+        : game.playerTwo;
     if (!game.completed) {
       return <h1>{`${currentPlayer}'s turn`}</h1>;
     }
@@ -48,7 +58,7 @@ class HeaderBase extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className="header">
         {this.renderError()}
         {this.gameOverText()}
@@ -64,9 +74,6 @@ const mapStateToProps = (state, ownProps) => ({
   error: state.error
 });
 
-const Header = connect(
-  mapStateToProps,
-  null
-)(HeaderBase);
+const Header = connect(mapStateToProps, null)(HeaderBase);
 
 export default Header;

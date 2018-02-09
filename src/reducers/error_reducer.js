@@ -1,7 +1,7 @@
-import { ErrorConstants } from '../actions/error_actions';
+import { ErrorConstants } from "../actions/error_actions";
 
 const ErrorReducer = (state = null, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ErrorConstants.ADD_ERROR:
       return action.error;
     case ErrorConstants.REMOVE_ERROR:
@@ -9,6 +9,6 @@ const ErrorReducer = (state = null, action) => {
     default:
       return state;
   }
-}
+};
 
 export default ErrorReducer;

@@ -1,23 +1,23 @@
-import $ from 'jquery';
+import $ from "jquery";
 
-const ROOT_URL = 'http://localhost:3000';
+const ROOT_URL = "http://localhost:3000";
 
-export const createGame = (players) => {
+export const createGame = players => {
   return $.ajax({
-    method: 'POST',
+    method: "POST",
     url: `${ROOT_URL}/api/games`,
-    data: { 
-      game: { 
+    data: {
+      game: {
         player_one_name: players.playerOneName,
         player_two_name: players.playerTwoName
       }
     }
-  })
-}
+  });
+};
 
-export const requestGame = (id) => {
+export const requestGame = id => {
   return $.ajax({
-    method: 'GET',
+    method: "GET",
     url: `${ROOT_URL}/api/games/${id}`
-  })
-}
+  });
+};
