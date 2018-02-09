@@ -21,10 +21,6 @@ class CellBase extends React.Component {
   }
 
   handleClick(positionString, cell) {
-    if (cell && cell.value) {
-      return null;
-    }
-
     let game = this.props.game[this.props.gameId];
     if (!game) {
       return null;

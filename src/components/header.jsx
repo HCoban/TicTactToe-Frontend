@@ -52,10 +52,13 @@ class HeaderBase extends React.Component {
 
   renderError() {
     let error = this.props.error;
-    if (error && error === "Unauthorized") {
-      return <h1>You are not allowed to play this game</h1>;
-    } else {
-      return null;
+    switch(error) {
+      case 422:
+        return <h1>This move is invalid, cell already marked</h1>;
+      case 401:
+        return <h1>You are not allowed to play this game</h1>;
+      default:
+        return null
     }
   }
 

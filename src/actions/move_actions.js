@@ -10,6 +10,6 @@ export const createMove = moveParams => dispatch =>
       dispatch(receiveGame(response.game));
       dispatch(removeError());
     })
-    .catch(() => {
-      dispatch(addError("Unauthorized"));
+    .catch((response) => {
+      dispatch(addError(response.status));
     });

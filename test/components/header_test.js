@@ -56,10 +56,18 @@ describe("Header", () => {
   });
 
   it("shows error message when unauthorized", () => {
-    state.error = "Unauthorized";
+    state.error = 401;
     let component = renderComponent(Header, ownProps, state);
     expect(component.text()).to.contain(
       "You are not allowed to play this game"
+    );
+  });
+
+  it("shows error message when move is invalid", () => {
+    state.error = 422;
+    let component = renderComponent(Header, ownProps, state);
+    expect(component.text()).to.contain(
+      "This move is invalid, cell already marked"
     );
   });
 
