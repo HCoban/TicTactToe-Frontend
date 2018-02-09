@@ -1,6 +1,7 @@
 import * as GameUtil from "../util/game_util";
 import { addAllCells } from "./cell_actions";
 import { hashHistory } from "react-router";
+import { removeError } from "./error_actions";
 
 export const GameConstants = {
   RECEIVE_GAME: "RECEIVE_GAME",
@@ -14,7 +15,9 @@ export const receiveGame = game => ({
 
 export const createGame = players => dispatch => {
   return GameUtil.createGame(players).then(response => {
+    dispatch(removeError());
     localStorage.setItem("token", response.game.token);
+    dispatch(addAllCells([]));
     hashHistory.push(`/games/${response.game.id}?token=${response.game.token}`);
     dispatch(receiveGame(response.game));
   });
@@ -22,9 +25,8 @@ export const createGame = players => dispatch => {
 
 export const requestGame = id => dispatch => {
   return GameUtil.requestGame(id).then(response => {
+    dispatch(removeError());
     dispatch(receiveGame(response.game));
-    if (response.marks.length > 0) {
-      dispatch(addAllCells(response.marks));
-    }
+    dispatch(addAllCells(response.marks));
   });
 };

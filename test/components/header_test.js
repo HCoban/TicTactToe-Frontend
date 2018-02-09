@@ -62,4 +62,9 @@ describe("Header", () => {
       "You are not allowed to play this game"
     );
   });
+
+  it("has a button", () => {
+    let component = renderComponent(Header, ownProps, state);
+    expect(component.find("button").text()).to.equal("Play New Game!");
+  });
 });

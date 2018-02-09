@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { hashHistory } from "react-router";
 
 class HeaderBase extends React.Component {
   constructor(props) {
     super(props);
+    this.redirectToForm = this.redirectToForm.bind(this);
   }
 
   gameOverText() {
@@ -57,9 +59,16 @@ class HeaderBase extends React.Component {
     }
   }
 
+  redirectToForm() {
+    hashHistory.push("/");
+  }
+
   render() {
     return (
       <div className="header">
+        <div className="button-container">
+          <button onClick={this.redirectToForm}>Play New Game!</button>
+        </div>
         {this.renderError()}
         {this.gameOverText()}
         {this.playerInfo()}
