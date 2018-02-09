@@ -8,8 +8,8 @@ export const createGame = players => {
     url: `${ROOT_URL}/api/games`,
     data: {
       game: {
-        player_one_name: players.playerOneName,
-        player_two_name: players.playerTwoName
+        player_one_name: players.playerOneName || "",
+        player_two_name: players.playerTwoName || ""
       }
     }
   });
