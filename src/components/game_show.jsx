@@ -6,7 +6,7 @@ import Header from './header';
 import GameForm from './form';
 import { requestGame } from '../actions/game_actions';
 
-class GameShowBase extends React.Component {
+export class GameShowBase extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -15,7 +15,7 @@ class GameShowBase extends React.Component {
     let pathname = this.props.location.pathname.split("/")
     let id = pathname[pathname.length - 1]
     let token = this.props.location.search
-    if (token.length > 7) {
+    if (token && token.length > 7) {
       token = token.substring(7)
       localStorage.setItem('token', token)
     }

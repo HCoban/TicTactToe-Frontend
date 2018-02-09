@@ -38,9 +38,19 @@ class HeaderBase extends React.Component {
     }
   }
 
+  renderError() {
+    let error = this.props.error;
+    if (error && error === "Unauthorized") {
+      return <h1>You are not allowed to play this game</h1>;
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return(
       <div className="header">
+        {this.renderError()}
         {this.gameOverText()}
         {this.playerInfo()}
       </div>
@@ -50,7 +60,8 @@ class HeaderBase extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   games: state.game,
-  cells: state.cells
+  cells: state.cells,
+  error: state.error
 });
 
 const Header = connect(

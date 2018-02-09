@@ -1,13 +1,18 @@
 import { renderComponent, expect } from "../test_helper";
-import GameShow from '../../src/components/game_show';
+import { GameShowBase } from '../../src/components/game_show';
 
 describe('GameShow', () => {
   let component;
 
   beforeEach(() => {
-    let props = { location: { pathname: '/1' } };
+    let props = {
+      location: {
+        pathname: '/1'
+      },
+      requestGame: () => null,
+    };
     let state = { game: { 1: { id: 1 } } };
-    component = renderComponent(GameShow, props, state);
+    component = renderComponent(GameShowBase, props, state);
   });
 
   it('renders header', () => {

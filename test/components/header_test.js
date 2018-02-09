@@ -14,7 +14,8 @@ describe('Header', () => {
           playerTwo: 'second'
         }
       },
-      cells: {} 
+      cells: {} ,
+      error: null
     };
     ownProps = { gameId: 1};
   })
@@ -53,6 +54,12 @@ describe('Header', () => {
     };
     let component = renderComponent(Header, ownProps, state);
     expect(component.find('h2')).to.have.text('first won')
+  });
+
+  it('shows error message when unauthorized', () => {
+    state.error = "Unauthorized";
+    let component = renderComponent(Header, ownProps, state);
+    expect(component.text()).to.contain('You are not allowed to play this game');
   })
 
 });
