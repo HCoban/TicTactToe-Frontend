@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-import AppRouter from './components/router';
-import configureStore from './store/store';
+import AppRouter from "./components/router";
+import configureStore from "./store/store";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
     <Provider store={configureStore()}>
-      < AppRouter/>
+      <AppRouter />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById("root")
   );
 });

@@ -1,7 +1,7 @@
-import { renderComponent, expect } from '../test_helper';
-import Cell from '../../src/components/cell';
+import { renderComponent, expect } from "../test_helper";
+import Cell from "../../src/components/cell";
 
-describe('Cell', () => {
+describe("Cell", () => {
   let state;
 
   beforeEach(() => {
@@ -15,21 +15,21 @@ describe('Cell', () => {
         A1: { value: "X", step: 1 },
         A2: { value: "O", step: 2 }
       }
-    }
+    };
   });
 
-  it('has the correct class', () => {
+  it("has the correct class", () => {
     let component = renderComponent(Cell, null, state);
-    expect(component).to.have.class('cell');
+    expect(component).to.have.class("cell");
   });
 
-  it('shows cell value', () => {
+  it("shows cell value", () => {
     let props = {
       gameId: 1,
       i: 0,
       j: 0
     };
     let component = renderComponent(Cell, props, state);
-    expect(component.find('span')).to.have.text("X")
+    expect(component.find("span")).to.have.text("X");
   });
 });
