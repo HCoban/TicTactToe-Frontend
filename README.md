@@ -69,4 +69,8 @@ I decided to name each 9 positions in the TicTacToe game as cells. Columns are r
 
 `state.error` stores up to a single error a time. This will be HTTP status codes of the error if there is any error present. Status codes are converted to human readable messages in the `<Header />` component. 
 
+During a game, a browser refresh would not cause stopping the game. Players can continue playing from the last step. In addition, game can even be completed in a different browser if the link is copied. 
+
+If players would like to share game but do not want others to continue their game, they could simply copy the url excluding the token. This way unauthorized visitors will be able to see the game but won't be able to make any moves.
+
 Game play logic is handled by the backend. API informs the client side regarding game status (winner, completed, etc.). For the game logic, API, and database schema please visit the [backend repository](https://github.com/HCoban/TicTactToe-Backend).
