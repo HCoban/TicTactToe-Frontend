@@ -2,18 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { createMove } from "../actions/move_actions";
 
-const POSITIONS = {
-  "00": "A1",
-  "01": "A2",
-  "02": "A3",
-  "10": "B1",
-  "11": "B2",
-  "12": "B3",
-  "20": "C1",
-  "21": "C2",
-  "22": "C3"
-};
-
 class CellBase extends React.Component {
   constructor(props) {
     super(props);
@@ -39,9 +27,9 @@ class CellBase extends React.Component {
   }
 
   render() {
-    const { cells, i, j } = this.props;
+    const { cells, column, row } = this.props;
 
-    let positionString = POSITIONS[`${i}${j}`];
+    let positionString = `${column}${row}`;
     let cell = cells[positionString];
 
     return (

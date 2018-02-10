@@ -26,8 +26,8 @@ describe("Cell", () => {
   it("shows cell value", () => {
     let props = {
       gameId: 1,
-      i: 0,
-      j: 0
+      column: "A",
+      row: 1
     };
     let component = renderComponent(Cell, props, state);
     expect(component.find("span")).to.have.text("X");

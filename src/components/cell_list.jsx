@@ -3,26 +3,34 @@ import Cell from "./cell";
 
 class CellList extends React.Component {
   render() {
+    let positionLabels = []
     let columns = [];
-    let i = 0;
-    while (i <= 2) {
+    let columnNames = ["A", "B", "C"]
+    columnNames.forEach((columnName) => {
       let cells = [];
-      let j = 0;
-      while (j <= 2) {
+      let rowNames = [1, 2, 3];
+      rowNames.forEach((rowName) => {
         cells.push(
-          <Cell key={`${i}, ${j}`} i={i} j={j} gameId={this.props.gameId} />
+          <Cell key={`${columnName}, ${rowName}`} column={columnName} row={rowName} gameId={this.props.gameId} />
         );
-        j++;
-      }
+        if (columnName === "A") {
+          positionLabels.push(<span key={rowName} className={`position-label row-${rowName}`}>{rowName}</span>)
+        }
+      })
       columns.push(
-        <div className="column" key={i}>
+        <div className="column" key={columnName}>
           {cells}
         </div>
       );
-      i++;
-    }
+      positionLabels.push(<span key={columnName} className={`position-label column-${columnName}`}>{columnName}</span>)
+    })
 
-    return <div className="cell-list">{columns}</div>;
+    return (
+      <div className="cell-list">
+        {positionLabels}
+        {columns}
+      </div>
+    );
   }
 }
 
